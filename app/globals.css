@@ -802,4 +802,195 @@ nav a:hover {
 .footer-legal {
   display: flex;
   gap: 1.5rem;
+}
+
+/* Performance Chart Section */
+.performance-section {
+  padding: 6rem 5%;
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(13, 148, 136, 0.1) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.performance-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 70%),
+              radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.chart-container {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.chart-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin: 2rem 0 1rem;
+  text-align: left;
+  padding-left: 1rem;
+  border-left: 3px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.chart-title:hover {
+  padding-left: 1.5rem;
+  color: var(--primary-color);
+}
+
+.performance-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, transparent 400%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-item:hover::before {
+  opacity: 0.1;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item:hover .stat-value {
+  transform: scale(1.1);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item:hover .stat-label {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Custom Tooltip Styles */
+.custom-tooltip {
+  transition: all 0.3s ease;
+  transform-origin: center bottom;
+  animation: tooltipAppear 0.3s ease forwards;
+}
+
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tooltip-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .performance-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .chart-container {
+    padding: 1rem;
+  }
+  
+  .stat-item {
+    padding: 1rem;
+  }
+  
+  .stat-value {
+    font-size: 1.2rem;
+  }
+  
+  .chart-title {
+    font-size: 1rem;
+    margin: 1.5rem 0 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .performance-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    padding: 0.8rem;
+  }
+  
+  .stat-item {
+    padding: 0.8rem;
+  }
 } 
