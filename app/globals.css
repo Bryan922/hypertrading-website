@@ -6,90 +6,78 @@
   --foreground-rgb: 24, 24, 27;
   --background-start-rgb: 240, 240, 255;
   --background-end-rgb: 255, 255, 255;
-  --primary-glow: conic-gradient(from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: 
-    var(--primary-glow),
-    var(--secondary-glow),
-    linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
-  font-feature-settings: "rlig" 1, "calt" 1;
-  @apply antialiased min-h-screen;
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  @apply antialiased min-h-screen flex flex-col;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-center;
+    @apply font-semibold tracking-tight text-center mx-auto;
   }
   
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl max-w-4xl mx-auto;
+    @apply text-4xl sm:text-5xl md:text-6xl max-w-4xl mx-auto mb-6;
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500;
     @apply leading-[1.1] font-bold;
   }
   
   h2 {
-    @apply text-3xl sm:text-4xl md:text-5xl max-w-3xl mx-auto;
+    @apply text-3xl sm:text-4xl md:text-5xl max-w-3xl mx-auto mb-4;
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
     @apply leading-tight font-bold;
   }
   
   h3 {
-    @apply text-xl sm:text-2xl;
+    @apply text-xl sm:text-2xl mb-3;
     @apply text-secondary-900 font-semibold;
   }
 
   p {
-    @apply leading-relaxed text-center max-w-3xl mx-auto text-secondary-600;
+    @apply leading-relaxed text-center max-w-3xl mx-auto text-secondary-600 mb-6;
+  }
+
+  section {
+    @apply flex flex-col items-center justify-center w-full;
   }
 }
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all
+    @apply inline-flex items-center justify-center rounded-xl text-base font-semibold transition-all
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:pointer-events-none
-    disabled:opacity-50 px-8 py-4 relative overflow-hidden;
+    disabled:opacity-50 px-8 py-4 relative overflow-hidden mx-auto;
   }
 
   .btn-primary {
     @apply bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 text-white 
-    shadow-lg shadow-primary-500/25 hover:shadow-accent-500/25 hover:scale-105 transform transition-all duration-300
-    before:absolute before:inset-0 before:bg-white/20 before:translate-x-[-100%] hover:before:translate-x-[100%] before:transition-transform before:duration-500;
+    shadow-lg shadow-primary-500/25 hover:shadow-accent-500/25 hover:scale-105 transform transition-all duration-300;
   }
 
   .btn-secondary {
-    @apply bg-white text-secondary-900 hover:bg-secondary-50 border border-secondary-200
-    shadow hover:shadow-lg hover:scale-105 transform transition-all duration-300;
+    @apply bg-white/80 text-secondary-900 hover:bg-white border border-secondary-200
+    shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300;
   }
 
   .card {
-    @apply bg-white/90 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500
-    border border-secondary-100/50 backdrop-blur-sm backdrop-filter
-    before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary-500/10 before:to-accent-500/10 before:opacity-0 hover:before:opacity-100 before:transition-opacity relative overflow-hidden;
+    @apply bg-white/95 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500
+    border border-secondary-100/50 backdrop-blur-lg backdrop-filter
+    flex flex-col items-center justify-center text-center p-8 gap-4;
   }
 
   .section {
-    @apply py-20 md:py-32 relative overflow-hidden;
+    @apply py-24 md:py-32 relative overflow-hidden w-full;
   }
 
   .container {
-    @apply px-6 mx-auto max-w-7xl;
+    @apply px-6 mx-auto max-w-7xl flex flex-col items-center;
   }
 
   .gradient-text {
@@ -97,49 +85,57 @@ body {
   }
 
   .feature-grid {
-    @apply grid md:grid-cols-3 gap-8 max-w-6xl mx-auto;
+    @apply grid md:grid-cols-3 gap-8 max-w-6xl mx-auto w-full;
   }
 
   .feature-card {
-    @apply card p-8 text-center flex flex-col items-center hover:scale-105 transform transition-all duration-500
-    bg-white/70 hover:bg-white/90 relative
-    before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary-500/5 before:to-accent-500/5;
+    @apply card hover:scale-105 transform transition-all duration-500
+    bg-white/90 hover:bg-white;
   }
 
   .stats-grid {
-    @apply grid md:grid-cols-4 gap-6 max-w-6xl mx-auto;
+    @apply grid md:grid-cols-4 gap-6 max-w-6xl mx-auto w-full;
   }
 
   .stats-card {
-    @apply card p-8 text-center hover:scale-105 transform transition-all duration-500
-    bg-white/70 hover:bg-white/90 relative
-    before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary-500/5 before:to-accent-500/5;
+    @apply card hover:scale-105 transform transition-all duration-500
+    bg-white/90 hover:bg-white;
   }
 
-  /* Ajout d'effets de glassmorphisme */
+  .stats-value {
+    @apply text-4xl font-bold gradient-text mb-2;
+  }
+
+  .stats-label {
+    @apply text-lg font-medium text-secondary-600;
+  }
+
   .glass {
-    @apply bg-white/70 backdrop-blur-xl backdrop-filter border border-white/20 shadow-xl;
+    @apply bg-white/80 backdrop-blur-xl backdrop-filter border border-white/30 shadow-xl;
   }
 
-  /* Ajout d'animations au survol */
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
 
-  /* Ajout de dégradés d'arrière-plan */
   .bg-gradient {
-    @apply bg-gradient-to-br from-primary-500/20 via-accent-500/20 to-transparent
-    relative overflow-hidden
-    before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] before:from-white/30 before:via-transparent before:to-transparent;
+    @apply bg-gradient-to-br from-primary-500/10 via-accent-500/10 to-transparent;
   }
 
-  /* Amélioration des espacements */
-  .space-y {
-    @apply space-y-6 md:space-y-8;
+  .section-title {
+    @apply flex flex-col items-center text-center mb-16 relative;
   }
 
-  /* Amélioration des bordures */
-  .border-gradient {
-    @apply border border-transparent bg-gradient-to-r from-primary-500/20 to-accent-500/20;
+  .section-title::after {
+    content: "";
+    @apply w-24 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mt-4 rounded-full;
+  }
+
+  .content-wrapper {
+    @apply flex flex-col items-center justify-center gap-8 w-full max-w-6xl mx-auto;
+  }
+
+  .text-content {
+    @apply text-center max-w-3xl mx-auto space-y-6;
   }
 } 
