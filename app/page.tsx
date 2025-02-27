@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import PerformanceChart from './components/PerformanceChart'
 import HeroSection from './components/HeroSection'
