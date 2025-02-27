@@ -4,31 +4,46 @@ import { motion } from 'framer-motion'
 
 const stats = [
   {
-    value: "60%",
-    label: "Performance Annuelle",
-    description: "Rendement stable et constant"
-  },
-  {
-    value: "2%",
-    label: "Drawdown Maximum",
-    description: "Gestion stricte du risque"
-  },
-  {
-    value: "1000+",
-    label: "Actifs Analysés",
-    description: "Diversification optimale"
+    value: "98%",
+    label: "Satisfaction Client",
+    description: "Avis positifs"
   },
   {
     value: "24/7",
-    label: "Surveillance",
-    description: "Monitoring continu"
+    label: "Disponibilité",
+    description: "Support continu"
+  },
+  {
+    value: "15+",
+    label: "Spécialités",
+    description: "Domaines d'expertise"
+  },
+  {
+    value: "30min",
+    label: "Premier RDV",
+    description: "Délai moyen"
   }
 ]
 
 export default function StatsSection() {
   return (
-    <section className="py-20 bg-secondary-800">
+    <section className="py-20 bg-gradient-to-b from-secondary-50 to-white">
       <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-secondary-900 mb-6">
+            Notre engagement pour votre bien-être
+          </h2>
+          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+            Des résultats concrets et mesurables pour votre épanouissement personnel
+          </p>
+        </motion.div>
+
         <div className="grid md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div
@@ -37,15 +52,15 @@ export default function StatsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
             >
-              <div className="text-4xl font-bold text-primary-300 mb-2">
+              <div className="text-4xl font-bold text-primary-600 mb-2">
                 {stat.value}
               </div>
-              <div className="text-xl font-semibold text-primary-100 mb-2">
+              <div className="text-xl font-semibold text-secondary-900 mb-2">
                 {stat.label}
               </div>
-              <div className="text-gray-400">
+              <div className="text-secondary-600">
                 {stat.description}
               </div>
             </motion.div>

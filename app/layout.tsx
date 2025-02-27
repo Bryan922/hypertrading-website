@@ -7,8 +7,8 @@ import Footer from './components/Footer'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Hypertrading - Trading Quantitatif',
-  description: 'Plateforme de trading quantitatif spécialisée dans le market making avec des performances stables de 60% annuel.',
+  title: 'MentalPlus - Votre bien-être mental',
+  description: 'Plateforme de soutien psychologique en ligne avec des professionnels qualifiés.',
 }
 
 export default function RootLayout({
@@ -18,9 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" className={inter.variable}>
-      <body className="min-h-screen bg-secondary-900 flex flex-col">
+      <body className="min-h-screen bg-gradient-to-b from-secondary-50 to-secondary-100">
         <Navbar />
-        <main className="flex-grow">
+        <main className="flex-grow pt-16">
           {children}
         </main>
         <Footer />

@@ -1,29 +1,30 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ChartBarIcon, CubeTransparentIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+import { HeartIcon, UserGroupIcon, SparklesIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 const features = [
   {
-    icon: ChartBarIcon,
-    title: "Analyse Multi-Actifs",
-    description: "Notre système analyse plus de 1000 actifs simultanément, permettant une diversification optimale et une indépendance totale vis-à-vis des conditions de marché."
+    icon: HeartIcon,
+    title: "Accompagnement Personnalisé",
+    description: "Une approche sur mesure adaptée à vos besoins spécifiques, dans un cadre bienveillant et professionnel."
   },
   {
-    icon: CubeTransparentIcon,
-    title: "Algorithmes Sophistiqués",
-    description: "Utilisation d'algorithmes de pointe en machine learning et deep learning pour détecter les inefficiences microscopiques du marché."
+    icon: UserGroupIcon,
+    title: "Thérapeutes Qualifiés",
+    description: "Une équipe de professionnels certifiés et expérimentés, sélectionnés pour leurs compétences et leur empathie."
   },
   {
-    icon: ShieldCheckIcon,
-    title: "Gestion du Risque",
-    description: "Contrôle strict du risque avec des systèmes de protection avancés, maintenant un drawdown maximum de 2%."
+    icon: SparklesIcon,
+    title: "Flexibilité Totale",
+    description: "Des consultations en ligne accessibles où que vous soyez, adaptées à votre emploi du temps."
   }
 ]
 
 export default function AboutSection() {
   return (
-    <section className="py-20 bg-secondary-900">
+    <section id="about" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,10 +33,12 @@ export default function AboutSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-primary-300 mb-6">L'Hypertrading Expliqué</h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Notre approche quantitative utilise des stratégies de market making avancées,
-            exploitant les micro-inefficiences du marché à travers un large spectre d'actifs financiers.
+          <h2 className="text-secondary-900 mb-6">
+            Une approche humaine de la thérapie
+          </h2>
+          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
+            Nous croyons en une approche holistique du bien-être mental, 
+            où chaque personne est unique et mérite une attention particulière.
           </p>
         </motion.div>
 
@@ -47,14 +50,32 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="bg-secondary-800 p-8 rounded-xl"
+              className="bg-secondary-50 p-8 rounded-2xl hover:shadow-lg transition-shadow"
             >
-              <feature.icon className="h-12 w-12 text-primary-400 mb-6" />
-              <h3 className="text-xl font-semibold text-primary-200 mb-4">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
+              <div className="bg-primary-100 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                <feature.icon className="h-6 w-6 text-primary-600" />
+              </div>
+              <h3 className="text-xl font-semibold text-secondary-900 mb-4">
+                {feature.title}
+              </h3>
+              <p className="text-secondary-600">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <Link href="#contact" className="btn btn-primary px-8 py-3">
+            Commencer votre parcours
+          </Link>
+        </motion.div>
       </div>
     </section>
   )
