@@ -16,32 +16,33 @@ body {
     rgb(var(--background-end-rgb))
   );
   font-feature-settings: "rlig" 1, "calt" 1;
+  @apply antialiased;
 }
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-semibold tracking-tight text-center;
   }
   
   h1 {
-    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl mx-auto;
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
-    @apply leading-[1.1];
+    @apply leading-[1.2];
   }
   
   h2 {
-    @apply text-3xl sm:text-4xl md:text-5xl;
+    @apply text-2xl sm:text-3xl md:text-4xl max-w-2xl mx-auto;
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
     @apply leading-tight;
   }
   
   h3 {
-    @apply text-2xl sm:text-3xl;
+    @apply text-xl sm:text-2xl;
     @apply text-secondary-900;
   }
 
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-center max-w-3xl mx-auto text-secondary-600;
   }
 }
 
@@ -49,7 +50,7 @@ body {
   .btn {
     @apply inline-flex items-center justify-center rounded-full text-sm font-medium transition-all
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:pointer-events-none
-    disabled:opacity-50 px-8 py-3;
+    disabled:opacity-50 px-6 py-2.5;
   }
 
   .btn-primary {
@@ -59,23 +60,39 @@ body {
 
   .btn-secondary {
     @apply bg-white text-secondary-900 hover:bg-secondary-50 border border-secondary-200
-    shadow-lg hover:shadow-xl transition-all duration-300;
+    shadow hover:shadow-md transition-all duration-300;
   }
 
   .card {
-    @apply bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300
+    @apply bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300
     border border-secondary-100 overflow-hidden;
   }
 
   .section {
-    @apply py-20 md:py-32;
+    @apply py-12 md:py-20;
   }
 
   .container {
-    @apply px-4 mx-auto max-w-7xl;
+    @apply px-4 mx-auto max-w-6xl;
   }
 
   .gradient-text {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+  }
+
+  .feature-grid {
+    @apply grid md:grid-cols-3 gap-6 max-w-5xl mx-auto;
+  }
+
+  .feature-card {
+    @apply card p-6 text-center flex flex-col items-center;
+  }
+
+  .stats-grid {
+    @apply grid md:grid-cols-4 gap-6 max-w-5xl mx-auto;
+  }
+
+  .stats-card {
+    @apply card p-6 text-center hover:scale-105 transition-transform duration-300;
   }
 } 

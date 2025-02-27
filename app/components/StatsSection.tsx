@@ -1,79 +1,66 @@
 'use client'
 
 import { motion } from 'framer-motion'
-
-const stats = [
-  {
-    value: "60%",
-    label: "Performance Annuelle",
-    description: "Rendement stable"
-  },
-  {
-    value: "2%",
-    label: "Drawdown Maximum",
-    description: "Risque maîtrisé"
-  },
-  {
-    value: "1000+",
-    label: "Actifs Analysés",
-    description: "Diversification"
-  },
-  {
-    value: "24/7",
-    label: "Surveillance",
-    description: "Monitoring continu"
-  }
-]
+import Link from 'next/link'
 
 export default function StatsSection() {
   return (
-    <section className="section bg-gradient-to-b from-secondary-50/50 to-white relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/4 w-[30rem] h-[30rem] bg-primary-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-[40rem] h-[40rem] bg-accent-500/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="mb-8">
-            Performance et stabilité
-          </h2>
-          <p className="text-xl text-secondary-600 max-w-3xl mx-auto">
-            Notre approche quantitative génère des résultats exceptionnels 
-            tout en maintenant un niveau de risque minimal
+    <section id="stats" className="section bg-gradient-to-b from-white to-secondary-50/50">
+      <div className="container">
+        <div className="text-center mb-16">
+          <h2 className="mb-6">Nos Performances</h2>
+          <p className="text-lg">
+            Des résultats exceptionnels et constants grâce à notre approche quantitative
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
+        <div className="stats-grid">
+          {[
+            {
+              value: '60%',
+              label: 'Performance Annuelle',
+              description: 'Rendement moyen stable sur les dernières années'
+            },
+            {
+              value: '2%',
+              label: 'Drawdown Maximum',
+              description: 'Gestion stricte des risques pour limiter les pertes'
+            },
+            {
+              value: '95%',
+              label: 'Taux de Réussite',
+              description: 'Ratio de trades gagnants sur l'ensemble des opérations'
+            },
+            {
+              value: '24/7',
+              label: 'Surveillance',
+              description: 'Monitoring continu des marchés et des positions'
+            }
+          ].map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="card p-8 text-center group hover:bg-gradient-to-br hover:from-primary-500 hover:to-accent-500 transition-all duration-300"
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 * index }}
+              className="stats-card"
             >
-              <div className="transition-all duration-300 group-hover:transform group-hover:translate-y-[-0.5rem]">
-                <div className="text-4xl font-bold gradient-text group-hover:text-white mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-xl font-semibold text-secondary-900 group-hover:text-white mb-2">
-                  {stat.label}
-                </div>
-                <div className="text-secondary-600 group-hover:text-white/90">
-                  {stat.description}
-                </div>
+              <div className="text-4xl font-bold gradient-text mb-3">
+                {stat.value}
               </div>
+              <div className="text-lg font-semibold text-secondary-900 mb-2">
+                {stat.label}
+              </div>
+              <p className="text-sm text-secondary-600">
+                {stat.description}
+              </p>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link href="#contact" className="btn btn-primary">
+            Commencer maintenant
+          </Link>
         </div>
       </div>
     </section>
