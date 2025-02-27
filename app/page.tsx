@@ -5,10 +5,11 @@ import PerformanceChart from './components/PerformanceChart'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
 import StatsSection from './components/StatsSection'
+import ContactSection from './components/ContactSection'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-secondary-900 to-secondary-800">
+    <>
       <HeroSection />
       <AboutSection />
       <StatsSection />
@@ -25,6 +26,7 @@ export default function Home() {
           </div>
         </motion.div>
       </section>
-    </main>
+      <ContactSection />
+    </>
   )
 } 
