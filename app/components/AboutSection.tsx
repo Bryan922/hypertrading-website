@@ -5,11 +5,17 @@ import { ChartBarIcon, CubeTransparentIcon, ShieldCheckIcon } from '@heroicons/r
 
 export default function AboutSection() {
   return (
-    <div className="section">
-      <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="mb-6">Notre Approche Quantitative</h2>
-          <p className="text-lg">
+    <div className="section bg-gradient">
+      {/* Background decorations */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 right-0 w-[40rem] h-[40rem] bg-primary-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[50rem] h-[50rem] bg-accent-500/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container relative z-10">
+        <div className="text-center mb-20 space-y">
+          <h2 className="mb-8">Notre Approche Quantitative</h2>
+          <p className="text-lg md:text-xl">
             Une stratégie sophistiquée basée sur l'analyse multi-actifs et des algorithmes avancés
           </p>
         </div>
@@ -52,11 +58,11 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 * index }}
-              className="feature-card"
+              className="feature-card glass hover-lift"
             >
-              <div className="text-4xl mb-4">{feature.icon}</div>
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-sm text-secondary-600">{feature.description}</p>
+              <div className="text-5xl mb-6">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
+              <p className="text-base text-secondary-600">{feature.description}</p>
             </motion.div>
           ))}
         </div>

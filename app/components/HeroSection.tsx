@@ -5,25 +5,27 @@ import Link from 'next/link'
 
 export default function HeroSection() {
   return (
-    <div className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden">
+    <div className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden bg-gradient">
       {/* Background decorations */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-100/40 via-accent-100/20 to-transparent" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[50rem] h-[50rem] bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-white to-transparent" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[60rem] h-[60rem] bg-primary-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-32 -left-32 w-[50rem] h-[50rem] bg-accent-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-full h-96 bg-gradient-to-t from-white to-transparent" />
       </div>
       
       <div className="container relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center space-y">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
+            className="space-y"
           >
-            <h1 className="mb-6">
+            <h1 className="mb-8">
               Votre partenaire de confiance en trading quantitatif
             </h1>
-            <p className="text-lg md:text-xl text-secondary-600 mb-8">
+            <p className="text-lg md:text-xl text-secondary-600 mb-12">
               Une approche systématique et sophistiquée du trading algorithmique, 
               générant des performances stables de 60% annuel avec seulement 2% de drawdown.
             </p>
@@ -31,7 +33,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link href="#contact" className="btn btn-primary">
                 Démarrer maintenant
@@ -41,7 +43,7 @@ export default function HeroSection() {
               </Link>
             </motion.div>
 
-            <div className="mt-16 stats-grid">
+            <div className="mt-24 stats-grid">
               {[
                 { value: '60%', label: 'Performance annuelle' },
                 { value: '2%', label: 'Drawdown maximum' },
@@ -53,12 +55,12 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.2 }}
-                  className="stats-card"
+                  className="stats-card glass hover-lift"
                 >
-                  <div className="text-3xl font-bold gradient-text mb-2">
+                  <div className="text-4xl font-bold gradient-text mb-4">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-secondary-600">
+                  <div className="text-base font-medium text-secondary-600">
                     {stat.label}
                   </div>
                 </motion.div>

@@ -16,7 +16,7 @@ body {
     rgb(var(--background-end-rgb))
   );
   font-feature-settings: "rlig" 1, "calt" 1;
-  @apply antialiased;
+  @apply antialiased min-h-screen;
 }
 
 @layer base {
@@ -25,20 +25,20 @@ body {
   }
   
   h1 {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl max-w-4xl mx-auto;
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
-    @apply leading-[1.2];
+    @apply text-4xl sm:text-5xl md:text-6xl max-w-4xl mx-auto;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500;
+    @apply leading-[1.1] font-bold;
   }
   
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl max-w-2xl mx-auto;
+    @apply text-3xl sm:text-4xl md:text-5xl max-w-3xl mx-auto;
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
-    @apply leading-tight;
+    @apply leading-tight font-bold;
   }
   
   h3 {
     @apply text-xl sm:text-2xl;
-    @apply text-secondary-900;
+    @apply text-secondary-900 font-semibold;
   }
 
   p {
@@ -48,51 +48,78 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-full text-sm font-medium transition-all
+    @apply inline-flex items-center justify-center rounded-xl text-sm font-semibold transition-all
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 disabled:pointer-events-none
-    disabled:opacity-50 px-6 py-2.5;
+    disabled:opacity-50 px-8 py-4;
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-accent-500 text-white hover:opacity-90 
-    shadow-lg shadow-primary-500/25 hover:shadow-accent-500/25;
+    @apply bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 text-white hover:opacity-90 
+    shadow-lg shadow-primary-500/25 hover:shadow-accent-500/25 hover:scale-105 transform transition-all duration-300;
   }
 
   .btn-secondary {
     @apply bg-white text-secondary-900 hover:bg-secondary-50 border border-secondary-200
-    shadow hover:shadow-md transition-all duration-300;
+    shadow hover:shadow-lg hover:scale-105 transform transition-all duration-300;
   }
 
   .card {
-    @apply bg-white rounded-xl shadow hover:shadow-lg transition-all duration-300
-    border border-secondary-100 overflow-hidden;
+    @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500
+    border border-secondary-100/50 backdrop-blur-sm backdrop-filter;
   }
 
   .section {
-    @apply py-12 md:py-20;
+    @apply py-20 md:py-32 relative overflow-hidden;
   }
 
   .container {
-    @apply px-4 mx-auto max-w-6xl;
+    @apply px-6 mx-auto max-w-7xl;
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500;
   }
 
   .feature-grid {
-    @apply grid md:grid-cols-3 gap-6 max-w-5xl mx-auto;
+    @apply grid md:grid-cols-3 gap-8 max-w-6xl mx-auto;
   }
 
   .feature-card {
-    @apply card p-6 text-center flex flex-col items-center;
+    @apply card p-8 text-center flex flex-col items-center hover:scale-105 transform transition-all duration-500
+    bg-white/80 hover:bg-white;
   }
 
   .stats-grid {
-    @apply grid md:grid-cols-4 gap-6 max-w-5xl mx-auto;
+    @apply grid md:grid-cols-4 gap-6 max-w-6xl mx-auto;
   }
 
   .stats-card {
-    @apply card p-6 text-center hover:scale-105 transition-transform duration-300;
+    @apply card p-8 text-center hover:scale-105 transform transition-all duration-500
+    bg-white/80 hover:bg-white;
+  }
+
+  /* Ajout d'effets de glassmorphisme */
+  .glass {
+    @apply bg-white/80 backdrop-blur-lg backdrop-filter;
+  }
+
+  /* Ajout d'animations au survol */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  /* Ajout de dégradés d'arrière-plan */
+  .bg-gradient {
+    @apply bg-gradient-to-br from-primary-500/10 via-accent-500/10 to-transparent;
+  }
+
+  /* Amélioration des espacements */
+  .space-y {
+    @apply space-y-6 md:space-y-8;
+  }
+
+  /* Amélioration des bordures */
+  .border-gradient {
+    @apply border border-transparent bg-gradient-to-r from-primary-500/20 to-accent-500/20;
   }
 } 
