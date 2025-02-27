@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { ChartBarIcon, CubeTransparentIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
@@ -23,7 +24,7 @@ const features = [
   }
 ]
 
-export default function AboutSection() {
+const AboutSection: React.FC = () => {
   return (
     <section id="about" className="section">
       <div className="container">
@@ -83,4 +84,6 @@ export default function AboutSection() {
       </div>
     </section>
   )
-} 
+}
+
+export default AboutSection 

@@ -1,10 +1,11 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function HeroSection() {
+const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden">
       {/* Background decorations */}
@@ -70,4 +71,6 @@ export default function HeroSection() {
       </div>
     </section>
   )
-} 
+}
+
+export default HeroSection 
