@@ -8,54 +8,42 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
   { name: 'Accueil', href: '/' },
   { name: 'Services', href: '#services' },
-  { name: 'À propos', href: '#about' },
-  { name: 'Performances', href: '#stats' },
-  { name: 'Contact', href: '#contact' }
+  { name: 'Performance', href: '#stats' },
 ]
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header>
-      <nav>
-        <div className="logo">
-          <Link href="/">
+    <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 shadow-sm">
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-2xl font-bold text-primary-600">
             HyperTrading
           </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="burger-menu"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className={mobileMenuOpen ? 'active' : ''}></span>
-            <span className={mobileMenuOpen ? 'active' : ''}></span>
-            <span className={mobileMenuOpen ? 'active' : ''}></span>
-          </button>
-        </div>
-        <ul className={`${mobileMenuOpen ? 'active' : ''}`}>
-          {navigation.map((item) => (
-            <li key={item.name}>
+
+          {/* Navigation desktop */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navigation.map((item) => (
               <Link
+                key={item.name}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-secondary-600 hover:text-primary-600 transition-colors"
               >
                 {item.name}
               </Link>
-            </li>
-          ))}
-          <li>
-            <Link
-              href="#contact"
-              className="btn-connexion"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Commencer maintenant
-            </Link>
-          </li>
-        </ul>
+            ))}
+          </div>
+
+          {/* Bouton menu mobile */}
+          <button
+            type="button"
+            className="lg:hidden text-secondary-600"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Bars3Icon className="h-6 w-6" />
+          </button>
+        </div>
       </nav>
 
       {/* Menu mobile */}
@@ -68,38 +56,29 @@ export default function Navbar() {
         <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
         <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white px-6 py-6">
           <div className="flex items-center justify-between">
-            <Link href="/" className="logo">
+            <Link href="/" className="text-2xl font-bold text-primary-600">
               HyperTrading
             </Link>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-secondary-600"
+              className="text-secondary-600"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <XMarkIcon className="h-6 w-6" />
             </button>
           </div>
           <div className="mt-6 flow-root">
-            <ul className="space-y-2 py-6">
+            <div className="space-y-4">
               {navigation.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                </li>
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="block text-lg text-secondary-600 hover:text-primary-600 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
-            </ul>
-            <div className="py-6">
-              <Link
-                href="#contact"
-                className="btn-connexion"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Commencer maintenant
-              </Link>
             </div>
           </div>
         </div>

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-    --primary-color: #14b8a6;
-    --secondary-color: #0d9488;
+    --primary-color: #0ea5e9;
+    --secondary-color: #1e293b;
     --text-color: #27272a;
     --background-color: #f0fdfa;
-    --accent-color: #134e4a;
+    --accent-color: #10b981;
 }
 
 /* Structure de base */
@@ -22,6 +22,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
+    @apply bg-secondary-50 text-secondary-900;
 }
 
 /* Header et Navigation */
@@ -585,7 +586,7 @@ nav a:hover {
 
 @layer base {
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-center mx-auto;
+    @apply font-semibold tracking-tight;
   }
   
   h1 {
@@ -688,12 +689,15 @@ nav a:hover {
   }
 
   .section-title {
-    @apply flex flex-col items-center text-center mb-16 relative;
+    @apply relative mb-16 text-center;
   }
 
-  .section-title::after {
-    content: "";
-    @apply w-24 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mt-4 rounded-full;
+  .section-title h2 {
+    @apply text-3xl md:text-4xl font-bold text-secondary-900 mb-4;
+  }
+
+  .section-title p {
+    @apply text-lg text-secondary-600 max-w-2xl mx-auto;
   }
 
   .content-wrapper {
@@ -702,6 +706,48 @@ nav a:hover {
 
   .text-content {
     @apply text-center max-w-3xl mx-auto space-y-6;
+  }
+
+  .bg-gradient-radial-dark {
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  }
+
+  .bg-grid-white {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  }
+
+  .performance-section {
+    @apply py-24 bg-secondary-900 relative overflow-hidden;
+  }
+
+  .chart-container {
+    @apply bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10 shadow-xl;
+  }
+
+  .chart-title {
+    @apply text-xl font-semibold text-white mb-6 border-l-4 border-primary-500 pl-4;
+  }
+
+  .performance-stats {
+    @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-8;
+  }
+
+  .stat-item {
+    @apply bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10
+           hover:bg-white/10 transition-all duration-300 cursor-default;
+  }
+
+  .stat-label {
+    @apply text-sm text-primary-200 font-medium;
+  }
+
+  .stat-value {
+    @apply text-2xl font-bold text-white mb-1;
+  }
+
+  .footer {
+    @apply bg-secondary-900 text-white py-6 border-t border-white/10;
   }
 }
 
@@ -804,193 +850,18 @@ nav a:hover {
   gap: 1.5rem;
 }
 
-/* Performance Chart Section */
-.performance-section {
-  padding: 6rem 5%;
-  background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(13, 148, 136, 0.1) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.performance-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 20% 20%, rgba(20, 184, 166, 0.1) 0%, transparent 70%),
-              radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.1) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.chart-container {
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  max-width: 1200px;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
-}
-
-.chart-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-}
-
-.chart-title {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2rem;
-  margin: 2rem 0 1rem;
-  text-align: left;
-  padding-left: 1rem;
-  border-left: 3px solid var(--primary-color);
-  transition: all 0.3s ease;
-}
-
-.chart-title:hover {
-  padding-left: 1.5rem;
-  color: var(--primary-color);
-}
-
-.performance-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, transparent 400%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.stat-item:hover::before {
-  opacity: 0.1;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px) scale(1.02);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-align: center;
-  transition: color 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.stat-value {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-.stat-item:hover .stat-value {
-  transform: scale(1.1);
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.stat-item:hover .stat-label {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Custom Tooltip Styles */
-.custom-tooltip {
-  transition: all 0.3s ease;
-  transform-origin: center bottom;
-  animation: tooltipAppear 0.3s ease forwards;
-}
-
-@keyframes tooltipAppear {
+/* Animations */
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.95);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
-.tooltip-label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .performance-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-  
-  .chart-container {
-    padding: 1rem;
-  }
-  
-  .stat-item {
-    padding: 1rem;
-  }
-  
-  .stat-value {
-    font-size: 1.2rem;
-  }
-  
-  .chart-title {
-    font-size: 1rem;
-    margin: 1.5rem 0 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .performance-stats {
-    grid-template-columns: 1fr;
-  }
-  
-  .chart-container {
-    padding: 0.8rem;
-  }
-  
-  .stat-item {
-    padding: 0.8rem;
-  }
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
 } 
