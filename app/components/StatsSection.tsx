@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-const StatsSection: React.FC = () => {
+export default function StatsSection() {
   return (
-    <section id="stats" className="section bg-gradient-to-b from-white to-secondary-50/50">
+    <div className="section bg-gradient-to-b from-white to-secondary-50/50">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="mb-6">Nos Performances</h2>
@@ -64,8 +63,6 @@ const StatsSection: React.FC = () => {
           </Link>
         </div>
       </div>
-    </section>
+    </div>
   )
-}
-
-export default StatsSection 
+} 

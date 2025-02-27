@@ -1,32 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import { ChartBarIcon, CubeTransparentIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
-import Link from 'next/link'
 
-const features = [
-  {
-    icon: ChartBarIcon,
-    title: "Analyse Multi-Actifs",
-    description: "Notre système analyse plus de 1000 actifs simultanément, permettant une diversification optimale et une indépendance totale vis-à-vis des conditions de marché."
-  },
-  {
-    icon: CubeTransparentIcon,
-    title: "Algorithmes Sophistiqués",
-    description: "Utilisation d'algorithmes de pointe en machine learning et deep learning pour détecter les inefficiences microscopiques du marché."
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Gestion du Risque",
-    description: "Contrôle strict du risque avec des systèmes de protection avancés, maintenant un drawdown maximum de 2%."
-  }
-]
-
-const AboutSection: React.FC = () => {
+export default function AboutSection() {
   return (
-    <section id="about" className="section">
+    <div className="section">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="mb-6">Notre Approche Quantitative</h2>
@@ -82,8 +61,6 @@ const AboutSection: React.FC = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   )
-}
-
-export default AboutSection 
+} 

@@ -1,13 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 
-const HeroSection: React.FC = () => {
+export default function HeroSection() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden">
+    <div className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-100/40 via-accent-100/20 to-transparent" />
@@ -69,8 +67,6 @@ const HeroSection: React.FC = () => {
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   )
-}
-
-export default HeroSection 
+} 
