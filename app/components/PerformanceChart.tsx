@@ -79,150 +79,112 @@ export default function PerformanceChart() {
   const maxDrawdown = Math.min(...performanceData.map(d => d.drawdown))
   const avgMonthlyReturn = performanceData.reduce((acc, curr) => acc + parseFloat(curr.monthlyPerf), 0) / performanceData.length
 
-  const chartVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  }
-
   return (
     <section className="performance-section">
-      <motion.div 
-        className="section-title"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
+      <div className="section-title">
         <h2>Performance du Portefeuille</h2>
-        <p>
-          Simulation de performance sur 2 ans avec notre stratégie de trading quantitatif
+        <p className="section-subtitle">
+          Simulation de performance sur 2 ans avec notre stratégie quantitative
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="chart-container"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: {
-            opacity: 1,
-            transition: {
-              staggerChildren: 0.3
-            }
-          }
-        }}
-      >
+      <div className="chart-container">
         {/* Graphique de performance cumulée */}
-        <motion.div variants={chartVariants}>
+        <div className="mb-8">
           <h3 className="chart-title">Performance Cumulée</h3>
-          <ResponsiveContainer width="100%" height={400}>
-            <AreaChart
-              data={performanceData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            >
-              <defs>
-                <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="var(--primary-color)" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="var(--primary-color)" stopOpacity={0.1}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" />
-              <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value.toLocaleString()}€`} />
-              <Tooltip content={<CustomTooltip type="performance" />} />
-              <Area 
-                type="monotone" 
-                dataKey="value" 
-                stroke="var(--primary-color)" 
-                fillOpacity={1} 
-                fill="url(#colorValue)"
-                animationDuration={2000}
-                animationEasing="ease-in-out"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </motion.div>
+          <div className="h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={performanceData}
+                margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--primary-color)" stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor="var(--primary-color)" stopOpacity={0.1}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={12} />
+                <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value.toLocaleString()}€`} fontSize={12} />
+                <Tooltip content={<CustomTooltip type="performance" />} />
+                <Area 
+                  type="monotone" 
+                  dataKey="value" 
+                  stroke="var(--primary-color)" 
+                  fillOpacity={1} 
+                  fill="url(#colorValue)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
 
-        {/* Graphique de drawdown */}
-        <motion.div variants={chartVariants}>
-          <h3 className="chart-title">Drawdown</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <AreaChart
-              data={performanceData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            >
-              <defs>
-                <linearGradient id="colorDrawdown" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#ef4444" stopOpacity={0.1}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" />
-              <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value.toFixed(1)}%`} />
-              <Tooltip content={<CustomTooltip type="drawdown" />} />
-              <Area 
-                type="monotone" 
-                dataKey="drawdown" 
-                stroke="#ef4444" 
-                fillOpacity={1} 
-                fill="url(#colorDrawdown)"
-                animationDuration={2000}
-                animationEasing="ease-in-out"
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </motion.div>
+        {/* Graphiques secondaires en grille */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Graphique de drawdown */}
+          <div>
+            <h3 className="chart-title">Drawdown</h3>
+            <div className="h-[200px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart
+                  data={performanceData}
+                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+                >
+                  <defs>
+                    <linearGradient id="colorDrawdown" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
+                      <stop offset="95%" stopColor="#ef4444" stopOpacity={0.1}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
+                  <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value.toFixed(1)}%`} fontSize={11} />
+                  <Tooltip content={<CustomTooltip type="drawdown" />} />
+                  <Area 
+                    type="monotone" 
+                    dataKey="drawdown" 
+                    stroke="#ef4444" 
+                    fillOpacity={1} 
+                    fill="url(#colorDrawdown)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
 
-        {/* Graphique des performances mensuelles */}
-        <motion.div variants={chartVariants}>
-          <h3 className="chart-title">Performances Mensuelles</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <ComposedChart
-              data={performanceData}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-              <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" />
-              <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value}%`} />
-              <Tooltip content={<CustomTooltip />} />
-              <defs>
-                <linearGradient id="colorBar" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--primary-color)" stopOpacity={1}/>
-                  <stop offset="100%" stopColor="var(--primary-color)" stopOpacity={0.6}/>
-                </linearGradient>
-              </defs>
-              <Bar 
-                dataKey="monthlyPerf" 
-                fill="url(#colorBar)"
-                animationDuration={2000}
-                animationEasing="ease-in-out"
-              />
-              <Line 
-                type="monotone" 
-                dataKey="monthlyPerf" 
-                stroke="#ffd700" 
-                dot={false}
-                strokeWidth={2}
-                animationDuration={2000}
-                animationEasing="ease-in-out"
-              />
-            </ComposedChart>
-          </ResponsiveContainer>
-        </motion.div>
+          {/* Graphique des performances mensuelles */}
+          <div>
+            <h3 className="chart-title">Performances Mensuelles</h3>
+            <div className="h-[200px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart
+                  data={performanceData}
+                  margin={{ top: 10, right: 10, left: 10, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
+                  <XAxis dataKey="month" stroke="rgba(255,255,255,0.5)" fontSize={11} />
+                  <YAxis stroke="rgba(255,255,255,0.5)" tickFormatter={(value) => `${value}%`} fontSize={11} />
+                  <Tooltip content={<CustomTooltip />} />
+                  <Bar 
+                    dataKey="monthlyPerf" 
+                    fill="url(#colorBar)"
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="monthlyPerf" 
+                    stroke="#ffd700" 
+                    dot={false}
+                    strokeWidth={2}
+                  />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
 
-        <motion.div 
-          className="performance-stats"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.1
-              }
-            }
-          }}
-        >
+        {/* Statistiques de performance */}
+        <div className="performance-stats mt-8">
           {[
             { label: 'Performance Totale', value: `+${totalReturn.toFixed(2)}%` },
             { label: 'Performance Annualisée', value: '+60.00%' },
@@ -231,24 +193,16 @@ export default function PerformanceChart() {
             { label: 'Capital Initial', value: `${initialValue.toLocaleString()}€` },
             { label: 'Capital Final', value: `${finalValue.toLocaleString()}€` }
           ].map((stat, index) => (
-            <motion.div
+            <div
               key={stat.label}
               className="stat-item"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
-              }}
             >
-              <span className="stat-label">{stat.label}</span>
-              <span className="stat-value">{stat.value}</span>
-            </motion.div>
+              <div className="stat-label">{stat.label}</div>
+              <div className="stat-value">{stat.value}</div>
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   )
 } 
