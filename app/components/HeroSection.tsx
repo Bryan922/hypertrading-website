@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function HeroSection() {
   return (
-    <React.Fragment>
+    <>
       <div className="relative min-h-[90vh] flex items-center justify-center section overflow-hidden">
         {/* Background decorations */}
         <div className="absolute inset-0 z-0">
@@ -70,6 +69,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   )
 } 

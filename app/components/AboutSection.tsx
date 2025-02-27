@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import { ChartBarIcon, CubeTransparentIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 
 export default function AboutSection() {
   return (
-    <React.Fragment>
+    <>
       <div className="section">
         <div className="container">
           <div className="text-center mb-16">
@@ -64,6 +63,6 @@ export default function AboutSection() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   )
 } 

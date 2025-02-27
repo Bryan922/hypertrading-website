@@ -1,12 +1,11 @@
 'use client'
 
-import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
 export default function StatsSection() {
   return (
-    <React.Fragment>
+    <>
       <div className="section bg-gradient-to-b from-white to-secondary-50/50">
         <div className="container">
           <div className="text-center mb-16">
@@ -66,6 +65,6 @@ export default function StatsSection() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   )
 } 
